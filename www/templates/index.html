@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>birb_watcher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function (event) {
+            let base_div = document.getElementById("video");
+            base_div.classList.add("col");
+
+            let up_button = document.createElement("button");
+            up_button.classList.add("btn");
+            up_button.classList.add("btn-primary");
+            up_button.setAttribute("type", "button");
+            up_button.textContent = "up";
+            up_button.addEventListener("click", function (event) {
+                console.log("up_button pressed");
+                fetch("/api/control/up", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(function(response) {
+                        console.log("up_button resp");
+                    })
+                    .catch(function() {
+                        console.log('up_button error');
+                    });
+            });
+            base_div.appendChild(up_button);
+
+            let down_button = document.createElement("button");
+            down_button.classList.add("btn");
+            down_button.classList.add("btn-primary");
+            down_button.setAttribute("type", "button");
+            down_button.textContent = "down";
+            down_button.addEventListener("click", function (event) {
+                console.log("down_button pressed");
+                fetch("/api/control/down", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(function(response) {
+                        console.log("down_button resp");
+                    })
+                    .catch(function() {
+                        console.log('down_button error');
+                    });
+            });
+            base_div.appendChild(down_button);
+
+            let left_button = document.createElement("button");
+            left_button.classList.add("btn");
+            left_button.classList.add("btn-primary");
+            left_button.setAttribute("type", "button");
+            left_button.textContent = "left";
+            left_button.addEventListener("click", function (event) {
+                console.log("left_button pressed");
+                fetch("/api/control/left", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(function(response) {
+                        console.log("left_button resp");
+                    })
+                    .catch(function() {
+                        console.log('left_button error');
+                    });
+            });
+            base_div.appendChild(left_button);
+
+            let right_button = document.createElement("button");
+            right_button.classList.add("btn");
+            right_button.classList.add("btn-primary");
+            right_button.setAttribute("type", "button");
+            right_button.textContent = "right";
+            right_button.addEventListener("click", function (event) {
+                console.log("right_button pressed");
+                fetch("/api/control/right", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(function(response) {
+                        console.log("right_button resp");
+                    })
+                    .catch(function() {
+                        console.log('right_button error');
+                    });
+            });
+            base_div.appendChild(right_button);
+
+
+            let img_div = document.createElement("img");
+            img_div.classList.add("row");
+            img_div.setAttribute("width", 640);
+            img_div.src = "/api/video/";
+            base_div.appendChild(img_div);
+
+        });
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <a>video</a>
+    <div class="row" id="video">
+
+    </div>
+</div>
+
+</body>
+</html>
